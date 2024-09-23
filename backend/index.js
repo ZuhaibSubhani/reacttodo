@@ -1,8 +1,29 @@
-const express=require("express");
+import express from "express";
+import { createTodo,updateTodo } from "./types.js";
+import { todo } from "./db.js";
+import { config } from "dotenv";
+
+
 const app=express();
-const {createTodo,updateTodo}=require("./types");
-const {todo}=require("./db")
 app.use(express.json());
+
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Origin');
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
+
+
+
+app.get("/",function(req,res){
+    re
+})
+
+
 
 app.post("/todo",async function(req,res){
     const realbody=req.body;

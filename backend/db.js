@@ -1,6 +1,13 @@
-const mongoose=require("mongoose");
+import { config } from "dotenv";
+import mongoose from "mongoose";
+config();
 const { Schema } = mongoose;
-mongoose.connect("mongodb+srv://zuhaibsubhani:aHP8raGzxr76Lt78@cluster0.ausqj.mongodb.net/todoreact");
+try{
+    mongoose.connect(process.env.MONGO);
+    console.log("connected")
+}catch{
+    console.log("error")
+}
 
 const todoSchema=mongoose.Schema({
     title:String,
@@ -9,6 +16,6 @@ const todoSchema=mongoose.Schema({
 })
 
 const todo=mongoose.model("todos",todoSchema);
-module.exports={
+export{
     todo
 }
